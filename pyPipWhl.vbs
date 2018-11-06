@@ -1,12 +1,12 @@
 dim s
-yn = msgbox("Yes2.7|No3.7",vbYesNo,"ÇëÑ¡Ôñ")
+yn = msgbox("Yes-py2.7 | No-py3.7",vbYesNo,"è¯·é€‰æ‹©")
 if yn =vbYes then
 	pip = "py -2.7 -m pip install "
 else
 	pip = "py -3.7 -m pip install "
 End if
 
-whl = inputbox("ÇëÊäÈëÄúµÄÊı¾İ","ÊäÈëÊı¾İ","")
+whl = inputbox("è¯·è¾“å…¥æ‚¨çš„æ•°æ®","è¾“å…¥æ•°æ®","")
 If whl <> "" then	
 	pipWhl = "cmd.exe /k " & pip & whl
 	rem pipWhl = "cmd.exe /k echo hello"
