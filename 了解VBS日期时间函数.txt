@@ -1,0 +1,120 @@
+了解VBS日期时间函数 (2015-04-13 11:41:48)转载▼
+标签： 杂谈	
+[教程] VBS基本函数 - 与时间有关函数
+'【将字符串转换成时间类型CDate、TimeValue】
+Dim DateAndTime, DTResult
+Msgbox "变量 = #2011-4-22 11:44:50 PM#，变量属" & TypeName(#2011-4-22 11:44:50 PM#) & " 型" '##写法指定时间类型
+DateAndTime = "2011-4-22 11:44:50 PM" 
+Msgbox "变量 = ""2011-4-22 11:44:50 PM""" &"，变量属 "& TypeName(DateAndTime) & " 型" '返回String类型
+Msgbox "结果: "& Cstr(IsDate(DateAndTime)) & " True:说明变量是日期格式 Date 类型"   '返回布尔值判断是否是时间类型
+'TimeValue() 返回包含时间的 Date 子类型的 Variant(变体)。
+DTResult1 = TimeValue(DateAndTime)
+Msgbox "变量 = TimeValue("""&DTResult1 &"""),变量为 "& TypeName(DTResult1) & " 型"'返回Date类型
+Msgbox "结果: "& Cstr(IsDate(DTResult1)) & " True:说明变量是日期格式 Date 类型" 
+'CDate() 返回已被转换为 Date 子类型的 Variant表达式。
+DTResult2 = CDate(DateAndTime)
+Msgbox "变量 = CDate("""& DTResult2 &""")，变量为 "& TypeName(DTResult2) & " 型" '返回Date类型
+Msgbox "结果: "& Cstr(IsDate(DTResult2)) & " True:说明变量是日期格式 Date 类型" 
+'【得到系统日期时间、年季月日星期】
+Msgbox "系统日期和时间: "& now           '返回当前系统日期和时间
+Msgbox "系统日期: "& Date          '返回当前系统日期
+Msgbox "系统时间: "& Time          '返回当前系统时间
+Msgbox "系统时间 - 年 : "& Year(now)     '年
+Msgbox "系统时间 - 月: "& Month(now)    '月
+Msgbox "系统时间 - 日: "& Day(now)      '日
+Msgbox "系统时间 - 小时: "& Hour(now)     '小时
+Msgbox "系统时间 - 分钟: "& Minute(now)   '分钟
+Msgbox "系统时间 - 秒: "& Second(now)   '秒
+Msgbox "系统时间 - 今天是本周第"& Weekday(now) &"天 "& WeekDayName(Weekday(now))  '今天是这周的第几天(周日为第一天)
+'【DatePart函数】
+Dim DT
+DT = #2/10/96 16:45:30#  '给时间类型变量DT赋值
+Msgbox DT& "包含年: "& DatePart("yyyy", DT)   '显示：1996(年)
+Msgbox DT& "包含月: "& DatePart("m", DT)      '显示：2(月)
+Msgbox DT& "包含日: "& DatePart("d", DT)      '显示：10(日)
+Msgbox DT& "包含时: "& DatePart("h", DT)      '显示：16(时)
+Msgbox DT& "包含分: "& DatePart("n", DT)      '显示：45(分)
+Msgbox DT& "包含秒: "& DatePart("s", DT)      '显示：30(秒)
+Msgbox DT& "包含季: "& DatePart("q", DT)      '显示：1，2月是第1季(季)
+Msgbox DT& " 是 "& Year(DT) &" 年的第 "& DatePart("y", DT) &" 天"  '显示：41，2月10日是1996年的第41日。(该年第几天)
+Msgbox DT& " 是 "& Year(DT) &" 年的第 "& DatePart("ww", DT) &" 周" '显示：6，2月10日是1996年的第6周。(该年第几周)
+Msgbox DT& " 是 "& Year(DT) &" 年的第 "& DatePart("ww", DT) &" 周第 "& DatePart("w", DT) &" 天(星期日为第一天)"      '显示：7，2月10日在在1996年是第6周的第7日（星期六）(所在周的第几天)
+
+' 【Timer计时器】返回午夜 12 时（12:00 AM）以后已经过去的秒数。
+Msgbox "午夜 12 时（12:00 AM）以后已经过去的秒数(Timer) = "& Timer '返回午夜 12 时（12:00 AM）以后已经过去的秒数。
+' 【TimeSerial】返回一个 Date 子类型的 Variant，含有指定时、分、秒的时间。
+Dim MyTime1
+MyTime1 = TimeSerial(12 - 6, -15, 0) 
+Msgbox "MyTime1=TimeSerial(12-6,-15,0)，MyTime1 返回 "&"""& MyTime1 &"""              ' 返回 上午 05:45:00.
+
+' 【格式转换FormatDateTime、MonthName、WeekdayName】
+' 语法: FormatDateTime(date, format)
+DT1 = #2001/2/22#
+DT2 = #3:15:55 PM#
+DT3 = #2001/2/22 3:15:55 PM#
+' format 为 0  vbGeneralDate  显示日期和/或时间。有哪个显示哪个，都有都显示
+Msgbox FormatDateTime(DT1)       ' 返回 2001-2-22
+Msgbox FormatDateTime(DT2)       ' 返回 下午 03:15:55
+Msgbox FormatDateTime(DT3)       ' 返回 2001-2-22 下午 03:15:55
+' format 为 1  vbLongDate  使用指定的长日期格式显示日期。
+Msgbox FormatDateTime(DT1, 1)    ' 返回 2001年2月22日
+Msgbox FormatDateTime(DT2, 1)    ' 返回 1899年12月30日
+Msgbox FormatDateTime(DT3, 1)    ' 返回 2001年2月22日
+' format 为 2  vbShortDate  使用指定的短日期格式显示日期。
+Msgbox FormatDateTime(DT1, 2)    ' 返回 2001-2-22
+Msgbox FormatDateTime(DT2, 2)    ' 返回 1899-12-30
+Msgbox FormatDateTime(DT3, 2)    ' 返回 2001-2-22
+' format 为 3  vbLongTime  使用此格式显示时间：hh:mm:ss PM/AM
+Msgbox FormatDateTime(DT1, 3)    ' 返回 上午 12:00:00
+Msgbox FormatDateTime(DT2, 3)    ' 返回 下午 03:15:55
+Msgbox FormatDateTime(DT3, 3)    ' 返回 下午 03:15:55
+
+' format 为 4  vbShortTime  使用 24 小时格式 (hh:mm) 显示时间。
+Msgbox FormatDateTime(DT1, 4)    ' 返回 00:00
+Msgbox FormatDateTime(DT2, 4)    ' 返回 15:15
+Msgbox FormatDateTime(DT3, 4)    ' 返回 15:15
+
+' 【MonthName】返回月份名
+' 下面例子返回1月至12月的名称。
+For i=1 to 12 '1月到12月
+'默认false不显示缩写；True显示缩写，中文系统中输出仍为汉字月份名称
+Msgbox "遍历月份名称: "& MonthName(i) &"  缩写: "& MonthName(i, True) 
+Next
+' 【WeekDayName】返回星期几
+For i=1 to 7
+Msgbox "遍历星期名称: "& WeekDayName(i) &"  缩写: "& WeekDayName(i, True) '返回星期日到星期六
+Next
+' 【DateAdd、DateDiff】
+' DateAdd 函数可返回已添加指定时间间隔的日期。
+' yyyy - 年 
+' q - 季度 
+' m - 月 
+' y - 当年的第几天 
+' d - 日 
+' w - 当周的第几天 
+' ww - 周 
+' h - 小时 
+' n - 分钟 
+' s - 秒 
+Msgbox DateAdd("m", 1, "31-Jan-95")
+'在这个示例中，DateAdd 返回 95 年 2 月 28 日，
+'而不是 95 年 2 月 31 日。
+'如果 date 为 96 年 1 月 31 日，
+'则返回 96 年 2 月 29 日，这是因为 1996 是闰年。
+Msgbox """2010-4-22"""& " 添加了4年返回 "& DateAdd("YYYY", 4, "2010-4-22") 
+Msgbox """2010-4-22"""& " 添加了4个月返回 "& DateAdd("m", 4, "2010-4-22")
+Msgbox """2010-4-22"""& " 添加了4天返回 "& DateAdd("d", 4, "2010-4-22")
+Msgbox """2010-4-22"""& " 添加了4周返回 "& DateAdd("ww", 4, "2010-4-22")
+Msgbox """13:20:52"""& " 添加了4小时返回 "& DateAdd("h", 4, "13:20:52")
+Msgbox """13:20:52"""& " 添加了4分钟返回 "& DateAdd("n", 4, "13:20:52")
+Msgbox """13:20:52"""& " 添加了4秒钟返回 "& DateAdd("s", 4, "13:20:52")
+' 减少用负值，例如:Msgbox DateAdd("s", -4, "13:20:52")
+
+' DateDiff 返回两个时间点之间的时间间隔
+Msgbox "当前日期与 "& "12/31/2010" &" 相差的月数 = "& DateDiff("m", "12/31/2010", Date)
+Msgbox "当前日期与 "& "12/31/2010" &" 相差的天数 = "& DateDiff("d", "12/31/2010", Date)
+Msgbox "当前时间与 "& "01:17:34" &" 相差分钟数 = "& DateDiff("n", "01:17:34", Time)
+Dim StarTime, EndTime
+StarTime = #2010-4-22#
+EndTime = Date
+Msgbox EndTime &" 和 "& StarTime &" 相差的月份数 = "& DateDiff("m", StarTime, EndTime)  '返回2010-4-22与现在日期相差的月数
