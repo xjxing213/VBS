@@ -1,18 +1,22 @@
 
-Set mouse=New SetMouse
+  Set mouse=New SetMouse
+  call getPosxy()
+  call cz(100,100)
+  
+sub getPosxy()
+    mouse.getpos x,y ''è·å¾—é¼ æ ‡å½“å‰ä½ç½®åæ ‡
+    MsgBox x & "," & y
+end sub
 
-'mouse.getpos x,y ''»ñµÃÊó±êµ±Ç°Î»ÖÃ×ø±ê
-
-'MsgBox x & "," & y
-
-
-mouse.move 148,154 '°ÑÊó±êÒÆ¶¯µ½×ø±ê
-WScript.Sleep 200
-mouse.clik "DBCLICK" '×ó»÷
-'Case "LEFT"
-'Case "RIGHT"
-'Case "MIDDLE"
-'Case "DBCLICK"
+sub cz(x,y)
+    mouse.move x,y 'æŠŠé¼ æ ‡ç§»åŠ¨åˆ°åæ ‡
+    WScript.Sleep 200
+    mouse.clik "DBCLICK" 'å·¦å‡»
+    'Case "LEFT"
+    'Case "RIGHT"
+    'Case "MIDDLE"
+    'Case "DBCLICK"
+end sub
 
 Class SetMouse
 private S
@@ -22,11 +26,11 @@ private reg_key, xls_code, x, y
 Private Sub Class_Initialize()
 Set xls = CreateObject("Excel.Application") 
 Set S = CreateObject("wscript.Shell")
-'vbs ÍêÈ«¿ØÖÆexcel
+'vbs å®Œå…¨æ§åˆ¶excel
 reg_key = "HKEY_CURRENT_USER\Software\Microsoft\Office\$\Excel\Security\AccessVBOM"
 reg_key = Replace(reg_key, "$", xls.Version)
 S.RegWrite reg_key, 1, "REG_DWORD"
-'model ´úÂë
+'model ä»£ç 
 xls_code = _
 "Private Type POINTAPI : X As Long : Y As Long : End Type" & vbCrLf & _
 "Private Declare Function SetCursorPos Lib ""user32"" (ByVal x As Long, ByVal y As Long) As Long" & vbCrLf & _
@@ -44,14 +48,14 @@ Set module1 = wbk.VBProject.VBComponents.Add(1)
 module1.CodeModule.AddFromString xls_code 
 End Sub
 
-'¹Ø±Õ
+'å…³é—­
 Private Sub Class_Terminate
 xls.DisplayAlerts = False
 wbk.Close
 xls.Quit
 End Sub
 
-'¿Éµ÷ÓÃ¹ı³Ì
+'å¯è°ƒç”¨è¿‡ç¨‹
 Public Sub getpos( x, y) 
 x = xls.Run("getx") 
 y = xls.Run("gety") 
