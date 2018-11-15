@@ -5,9 +5,9 @@ p2=Array(Array(746,139),Array(1147,185),Array(301,236),Array(1270,186),Array(906
 p=p2
 set wsh = createobject("Wscript.Shell")
 Set mouse=New SetMouse
-
-mg=0
-If mg=0 Then
+'True False
+mg=True
+If mg Then
 	Call main()
 Else
 	Call getPosxy()
