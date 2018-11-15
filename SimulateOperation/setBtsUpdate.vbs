@@ -1,12 +1,17 @@
-Dim str,parr,arr,a,wsh,p1,p2,p
+Dim str,parr,arr,a,wsh,p1,p2,p，mg
 '输入基站名称|搜索|勾选升级或取消升级|确定|确定
-p1=Array(Array(746,139),Array(1239,183),Array(301,236),Array(1270,186),Array(955,817),Array(796,681))
-p2=Array(Array(746,139),Array(1147,185),Array(301,236),Array(1270,186),Array(906,159),Array(796,679))
+p1=Array(Array(746,139),Array(1239,183),Array(301,236),Array(1270,186),Array(955,817),Array(796,681)) '升级
+p2=Array(Array(746,139),Array(1147,185),Array(301,236),Array(1270,186),Array(906,159),Array(796,679)) '取消升级
 p=p2
 set wsh = createobject("Wscript.Shell")
 Set mouse=New SetMouse
-Call main()
-'Call getPosxy()
+
+mg=0
+If mg=0 Then
+	Call main()
+Else
+	Call getPosxy()
+End If
 
 Sub getPosxy()
 mouse.getpos x,y ''获得鼠标当前位置坐标
@@ -44,6 +49,10 @@ For Each a In arr
 	'成功确定
 	Call cz(p(5)(0),p(5)(1))'6
 Next
+'	把最后那个站清除掉
+	Call cz(p(0)(0),p(0)(1)) '1
+	wsh.sendkeys "{DEL " & lastBts &"}" 
+
 End Sub
 
 Sub cz(x, y)	
