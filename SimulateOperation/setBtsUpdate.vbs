@@ -1,53 +1,56 @@
-Dim str,arr,a,wsh
-
+Dim str,parr,arr,a,wsh,p1,p2,p
+'è¾“å…¥åŸºç«™åç§°|æœç´¢|å‹¾é€‰å‡çº§æˆ–å–æ¶ˆå‡çº§|ç¡®å®š|ç¡®å®š
+p1=Array(Array(746,139),Array(1239,183),Array(301,236),Array(1270,186),Array(955,817),Array(796,681))
+p2=Array(Array(746,139),Array(1147,185),Array(301,236),Array(1270,186),Array(906,159),Array(796,679))
+p=p2
 set wsh = createobject("Wscript.Shell")
 Set mouse=New SetMouse
 Call main()
 'Call getPosxy()
 
 Sub getPosxy()
-mouse.getpos x,y ''»ñµÃÊó±êµ±Ç°Î»ÖÃ×ø±ê
+mouse.getpos x,y ''è·å¾—é¼ æ ‡å½“å‰ä½ç½®åæ ‡
 WScript.Echo x & "," & y
 End Sub
 
 Sub main()
 Dim lastBts
-str=Inputbox("ÇëÊäÈëÄúµÄÊı¾İ")
+str=Inputbox("è¯·è¾“å…¥æ‚¨çš„æ•°æ®")
 arr = Split(str, ",")
 lastBts=20
 For Each a In arr
 	'click bts
-	Call cz(746,139)
+	Call cz(p(0)(0),p(0)(1)) '1
 	'Ctrl+A
-'	wsh.sendkeys "^(A)" 'È«Ñ¡ÎŞĞ§£¬ÎªÉ¶£¿
+'	wsh.sendkeys "^(A)" 'å…¨é€‰æ— æ•ˆï¼Œä¸ºå•¥ï¼Ÿ
 '	WScript.Sleep 300
-	'lastBts¸ù¾İÉÏÒ»¸ö»ùÕ¾µÄ³¤¶È£¬ºÏÀíµ÷ÕûÉ¾³ı´ÎÊı
+	'lastBtsæ ¹æ®ä¸Šä¸€ä¸ªåŸºç«™çš„é•¿åº¦ï¼Œåˆç†è°ƒæ•´åˆ é™¤æ¬¡æ•°
 	wsh.sendkeys "{DEL " & lastBts &"}" 
 	lastBts=Len(a)
 	WScript.Sleep 300
-	'input btsname,'Ğ´ÈëĞÅÏ¢µ½¼ôÇĞ°å
+	'input btsname,'å†™å…¥ä¿¡æ¯åˆ°å‰ªåˆ‡æ¿
 	wsh.Run "mshta vbscript:ClipboardData.SetData("&chr(34)&"text"&chr(34)&"," &Chr(34)& a &Chr(34)& ")(close)",0,True
 	'Ctrl+V
 	wsh.sendkeys "^(V)"
-	'²éÑ¯
-	Call cz(1239,183)
+	'æŸ¥è¯¢
+	Call cz(p(1)(0),p(1)(1))'2
 	WScript.Sleep 300
-	'¹´Ñ¡
-	Call cz(301,236)
-	'Éı¼¶
-	Call cz(1268,181)
-	'È·¶¨
-	Call cz(955,817)
-	'³É¹¦È·¶¨
-	Call cz(796,681)
+	'å‹¾é€‰
+	Call cz(p(2)(0),p(2)(1))'3
+	'å‡çº§
+	Call cz(p(3)(0),p(3)(1))'4
+	'ç¡®å®š
+	Call cz(p(4)(0),p(4)(1))'5
+	'æˆåŠŸç¡®å®š
+	Call cz(p(5)(0),p(5)(1))'6
 Next
-End sub
+End Sub
 
 Sub cz(x, y)	
-	mouse.move x,y '°ÑÊó±êÒÆ¶¯µ½×ø±ê
+	mouse.move x,y 'æŠŠé¼ æ ‡ç§»åŠ¨åˆ°åæ ‡
 	WScript.Sleep 100
-	mouse.clik "LEFT" '×ó»÷
-	WScript.Sleep 400
+	mouse.clik "LEFT" 'å·¦å‡»
+	WScript.Sleep 500
 	'Case "LEFT"
 	'Case "RIGHT"
 	'Case "MIDDLE"
@@ -62,11 +65,11 @@ Class SetMouse
 	Private Sub Class_Initialize()
 		Set xls = CreateObject("Excel.Application") 
 		Set S = CreateObject("wscript.Shell")
-		'vbs ÍêÈ«¿ØÖÆexcel
+		'vbs å®Œå…¨æ§åˆ¶excel
 		reg_key = "HKEY_CURRENT_USER\Software\Microsoft\Office\$\Excel\Security\AccessVBOM"
 		reg_key = Replace(reg_key, "$", xls.Version)
 		S.RegWrite reg_key, 1, "REG_DWORD"
-		'model ´úÂë
+		'model ä»£ç 
 		xls_code = _
 		"Private Type POINTAPI : X As Long : Y As Long : End Type" & vbCrLf & _
 		"Private Declare Function SetCursorPos Lib ""user32"" (ByVal x As Long, ByVal y As Long) As Long" & vbCrLf & _
@@ -84,14 +87,14 @@ Class SetMouse
 		module1.CodeModule.AddFromString xls_code 
 	End Sub
 	
-	'¹Ø±Õ
+	'å…³é—­
 	Private Sub Class_Terminate
 		xls.DisplayAlerts = False
 		wbk.Close
 		xls.Quit
 	End Sub
 	
-	'¿Éµ÷ÓÃ¹ı³Ì
+	'å¯è°ƒç”¨è¿‡ç¨‹
 	Public Sub getpos( x, y) 
 		x = xls.Run("getx") 
 		y = xls.Run("gety") 
