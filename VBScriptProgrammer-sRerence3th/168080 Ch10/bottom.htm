@@ -1,0 +1,18 @@
+<html>
+<head>
+<title>A sample page containg script</title>
+<script language="VBScript">
+window.Parent.iEventOrder = window.Parent.iEventOrder + 1
+window.Parent.sEventTracker = window.Parent.sEventTracker & window.Parent.iEventOrder & " bottom frame - First code in Page" & Chr(13) & Chr(10)
+
+Sub window_onload
+  window.Parent.iEventOrder = window.Parent.iEventOrder + 1
+  window.parent.sEventTracker = window.Parent.sEventTracker & window.Parent.iEventOrder & " bottom frame - window_onload" & Chr(13) & Chr(10)
+End Sub
+</script>
+
+</head>
+
+<body>
+</body>
+</html>

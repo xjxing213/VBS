@@ -1,0 +1,27 @@
+<html>
+<head>
+    <title>The "Hello, World!" Gadget</title>
+    <style>
+        body
+        {
+            margin: 0;
+            width: 145px;
+            height: 65px;
+        }
+        #g1
+        {
+            width: 145px;
+            top: 24px;
+            text-align: center;
+            font-family: Tahoma;
+            font-size: 10pt;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <span id="g1">
+        Hello, World!  Cool, eh?
+    <span>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>A sample page containg script</title>
+<script language="VBScript">
+Function RadioGroupValid(radGroup)
+    Dim iElement
+    RadioGroupValid = False
+    ' Loop through the radio buttons in the group
+    For iElement = 0 To radGroup.Length - 1
+        ' If one is checked then we have validity
+        If radGroup(iElement).Checked = True _ 
+            Then RadioGroupValid = True
+        Next
+End Function
+
+Sub cmdCheckForm_onclick
+    Dim sValidity
+    If RadioGroupValid(form1.radCreditCard) Then
+        MsgBox "Valid"
+        'form1.submit
+    Else
+        MsgBox "Invalid"
+    End If
+End Sub
+</script>
+
+</head>
+
+<body>
+<form action="some_form_handler.asp" method="post" id="form1" name="form1">
+  Visa
+  <input type="radio" id="radCreditCard" name="radCreditCard" value="Visa">
+  <br>
+  Master Card
+  <input type="radio" id="radCreditCard" name="radCreditCard" value="MasterCard">
+  <br>
+  Other
+  <input type="radio" id="radCreditCard" name="radCreditCard" value="Other">
+  <br>
+  <input type="button" value="Test" id="cmdCheckForm" name="cmdCheckForm"> 
+</form>
+</body>
+
+</html>
+
+
+
+

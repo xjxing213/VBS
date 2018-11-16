@@ -1,0 +1,43 @@
+<html>
+<head>
+<script language="VBSCRIPT">
+Dim sName
+sName = "Right Frame"
+
+Sub SayWhoIsThis()
+    MsgBox "This is RFrame's subroutine window.SayWhoIsThis"
+End Sub
+
+Sub button1_onclick
+    MsgBox "window.sName = " & window.sName
+    window.SayWhoIsThis
+End Sub
+
+Sub button2_onclick
+    MsgBox "window.Parent.sName = " & window.parent.sName
+    window.Parent.SayWhoIsThis
+End Sub
+
+Sub button3_onclick
+    MsgBox "window.parent.LFrame.sName = " & window.Parent.LFrame.sName
+    window.Parent.LFrame.SayWhoIsThis
+End Sub
+
+Sub button4_onclick
+    MsgBox "window.Parent.LFrame.sName = " & window.Parent.frames(0).sName
+   window.Parent.frames(0).SayWhoIsThis
+End Sub
+</script>
+<title>Right Frame</title>
+</head>
+ 
+
+<body>
+<h1>Right Frame</h1>
+<input type="button" value="window" name="button1">
+<input type="button" value="window.Parent" name="button2">
+<input type="button" value="window.Parent.LFrame" name="button3">
+<input type="button" value="window.Parent.frames(0)" name="button4">
+</body>
+</html>
+

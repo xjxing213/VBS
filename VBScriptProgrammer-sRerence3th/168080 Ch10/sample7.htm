@@ -1,0 +1,106 @@
+<html>
+<head>
+<title>A sample page containg script</title>
+<script language="VBScript">
+Function CheckDate(sDay, sMonth, sYear)
+    On Error Resume Next
+    Dim Date1
+    ' If invalid date an error will be raised
+    Date1 = CDate(sDay & "/" & sMonth & "/" & sYear)
+    ' If error number not 0 then invalid date
+    If Err.number <> 0 Then
+        Err.Clear
+        ' Calc days in month by going to next month then
+        ' subtract 1 day
+        Date1 = DateAdd("m",1,sMonth & "/" & sYear)
+        Date1 = DateAdd("d",-1,Date1)
+        CheckDate = "There are only " & Day(Date1) _ 
+        & " days in " & sMonth
+    Else
+        CheckDate = ""
+    End If
+End Function
+
+Sub cmdCheckForm_onclick
+    sDateValidityMessage = CheckDate(form1.cboDay.Value, _
+        form1.cboMonth.Value, form1.cboYear.Value)
+    If sDateValidityMessage <> "" Then
+        MsgBox sDateValidityMessage
+    Else
+        MsgBox "That date is valid"
+        'form1.submit
+    End If
+End Sub
+</script>
+
+</head>
+
+<body>
+<form action="some_form_handler.asp" method="post" id="form1" name="form1">
+<select id="cboDay" name="cboDay" size="1">
+<option value="1">1
+<option value="2">2
+<option value="3">3
+<option value="4">4
+<option value="5">5
+<option value="6">6
+<option value="7">7
+<option value="8">8
+<option value="9">9
+<option value="10">10
+<option value="11">11
+<option value="12">12
+<option value="13">13
+<option value="14">14
+<option value="15">15
+<option value="16">16
+<option value="17">17
+<option value="18">18
+<option value="19">29
+<option value="20">20
+<option value="21">21
+<option value="22">22
+<option value="23">23
+<option value="24">24
+<option value="25">25
+<option value="26">26
+<option value="27">27
+<option value="28">28
+<option value="29">29  
+<option value="30">30  
+<option value="31">31  
+</select>
+
+<select id="cboMonth" name="cboMonth" size=1>
+<option value="Jan">Jan 
+<option value="Feb">Feb 
+<option value="Mar">Mar 
+<option value="Apr">Apr 
+<option value="May">May
+<option value="Jun">Jun
+<option value="Jul">Jul
+<option value="Aug">Aug
+<option value="Sep">Sep
+<option value="Oct">Oct
+<option value="Nov">Nov
+<option value="Dec">Dec
+</select>
+
+<select id="cboYear" name="cboYear" size=1>
+<option value="2003">2003 
+<option value="2004">2004 
+<option value="2005">2005 
+<option value="2006">2006 
+<option value="2007">2007 
+<option value="2008">2008 
+</select>
+
+<br>
+ 
+
+<input type="button" value="Test" id="cmdCheckForm" name="cmdCheckForm"> 
+</form>
+</body>
+
+</html>
+

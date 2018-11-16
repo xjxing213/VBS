@@ -1,0 +1,30 @@
+<html>
+<head>
+<title>A sample page containing script</title>
+<script language="VBScript">
+Dim sEventTracker
+Dim iEventOrder
+iEventOrder = 0
+
+window.Parent.iEventOrder = window.Parent.iEventOrder + 1
+window.Parent.sEventTracker = window.Parent.sEventTracker & window.Parent.iEventOrder & " Frameset - First code in Page" & Chr(13) & Chr(10)
+Sub window_onload
+iEventOrder = iEventOrder + 1
+  sEventTracker = sEventTracker & iEventOrder & " Frameset window_onload" & Chr(13) & Chr(10)
+End Sub
+</script>
+
+</head>
+
+<frameset rows="50%,*">
+    <frame src="top.htm" id="fraTop" name="fraTop">
+    <frame src="bottom.htm" id="fraBottom" name="fraBottom">
+        <noframes>
+            <body>
+            <p>This page uses frames, but your browser doesn’t 
+               support them.</p>      
+            </body>
+        </noframes>
+</frameset>
+
+</html>

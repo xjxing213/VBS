@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>A sample page containing script</title>
+<script language="VBScript">
+window.Parent.iEventOrder = window.Parent.iEventOrder + 1
+window.Parent.sEventTracker = window.Parent.sEventTracker _ 
+  & window.Parent.iEventOrder _ 
+  & " Top frame - First code in Page" & Chr(13) & Chr(10)
+
+Sub cmdCheckForm_onclick
+    window.Parent.iEventOrder = window.Parent.iEventOrder + 1
+    window.Parent.sEventTracker = window.Parent.sEventTracker _ 
+    & window.Parent.iEventOrder _ 
+    & " Top frame - cmdCheckForm_onclick" & Chr(13) & Chr(10)
+    form1.txtEvents.Value = window.Parent.sEventTracker
+End Sub
+
+Sub window_onload
+    window.Parent.iEventOrder = window.Parent.iEventOrder + 1
+    window.Parent.sEventTracker = window.Parent.sEventTracker _ 
+    & window.Parent.iEventOrder _ 
+    & " Top frame - window_onload" & Chr(13) & Chr(10)
+End Sub
+</script>
+
+</head>
+
+<body>
+<form action="some_form_handler.asp" method="post" id="form1" name="form1">
+<textarea cols="60" name="txtEvents" rows="10"></textarea>
+<input type="button" value="List Events" name="cmdCheckForm"> 
+</form>
+
+<script language="VBScript">
+window.Parent.iEventOrder = window.Parent.iEventOrder + 1
+window.Parent.sEventTracker = window.Parent.sEventTracker _ 
+  & window.Parent.iEventOrder _ 
+  & " Top frame - Second code in Page" & Chr(13) & Chr(10)
+</script>
+</body>
+
+<html>

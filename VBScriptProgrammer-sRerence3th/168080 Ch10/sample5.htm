@@ -1,0 +1,78 @@
+<html>
+<head>
+<title>A sample page containg script</title>
+<script language="VBScript">
+Function ValidInteger(sNumber, iMin, iMax)
+    Dim iNumber
+    ' Is it a number?
+    If IsNumeric(sNumber) Then
+
+        ' Is it a whole number (no decimal place)?
+        If InStr(sNumber,".") = 0 Then
+      
+            ' Is it in range?
+            If CLng(sNumber) >= iMin And CLng(sNumber) <= iMax Then
+            ValidInteger = ""
+            Else
+            ValidInteger = "You must enter a number between " _ 
+            & iMin & " and " & iMax
+        End If
+    Else
+        ValidInteger = "You must enter a whole number"
+    End If
+
+    Else
+        ValidInteger = "You must enter a number"
+    End If  
+End Function
+ 
+
+Sub cmdCheckForm_onclick
+    Dim sValidity
+    sValidity = ValidInteger(form1.text1.value,1,10)
+    If sValidity = "" Then
+        MsgBox "Valid"
+        'form1.submit
+    Else
+        MsgBox sValidity
+    End If
+
+End Sub
+</script>
+
+</head>
+
+<body>
+<form action="some_form_handler.asp" method="post" id="form1" name="form1">
+    <input id="text1" name="text1">
+    <input type="button" value="Button" id="cmdCheckForm" name="cmdCheckForm"> 
+</form>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<HTML>
+<HEAD>
+<SCRIPT LANGUAGE="VBScript">
+
+</SCRIPT>
+</HEAD>
+
+<BODY>
+
+</BODY>
+</HTML>
+

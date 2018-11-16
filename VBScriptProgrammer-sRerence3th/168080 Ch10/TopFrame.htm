@@ -1,0 +1,21 @@
+<html>
+<head>
+<title>A sample page containg script</title>
+<script language="VBScript">
+Dim sName
+sName = "Top Frame"
+
+Sub SayWhoIsThis()
+    MsgBox "This is the top frame's subprocedure " _
+    & "window.SayWhoIsThis"
+End Sub
+</script>
+
+</head>
+
+<frameset cols="50%,*">
+  <frame src="LFrame.htm" name="LFrame">
+  <frame src="RFrame.htm" name="RFrame">
+</frameset>
+
+</html>

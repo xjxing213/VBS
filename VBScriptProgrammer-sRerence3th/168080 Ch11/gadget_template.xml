@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<gadget>
+    <name>Gadget Name</name>
+    <author>Gadget Author</author>
+    <copyright>&#169; 2007</copyright>
+    <description>Gadget description</description>
+    <icons>
+        <icon>icon.png</icon>
+    </icons>
+    <version value="1.0.0.0" MinPlatformVersion="0.1"></version>
+    <sidebar>
+        <type>html</type>
+        <permissions>full</permissions>
+        <code>test.htm</code>
+        <website>www.example.com</website>
+     </sidebar>
+</gadget>

@@ -1,0 +1,47 @@
+<html>
+<head>
+    <title>Free space on C Drive</title>
+    <style>
+        body
+        {
+            margin: 0;
+            width: 130px;
+            height: 75px;
+        }
+        #g1
+        {
+            width: 130px;
+            top: 15px;
+            text-align: center;
+            font-family: Tahoma;
+            font-size: 10pt;
+            position: absolute;
+        }
+    </style>
+    <script language="vbscript">
+    Sub Window_OnLoad()
+        sub1()
+        timer1 = window.SetInterval("sub1", 60000)
+    End Sub
+
+        Sub sub1()
+            strComputer = "."
+            Set objWMIService = GetObject("winmgmts:" _ 
+        & "{impersonationLevel=impersonate}!\\" & strComputer & "\root\cimv2")
+           Set hDisks = objWMIService.ExecQuery _ 
+        ("Select * from Win32_LogicalDisk Where DriveType = 3")
+        g1.InnerHTML = ""
+               For Each objDisk in hDisks
+                   diskFreeSpace = objDisk.FreeSpace
+                   diskTotalSpace = objDisk.Size
+                   pctFree = diskFreeSpace / diskTotalSpace
+                   g1.InnerHTML = g1.InnerHTML + objDisk.Name + " " _
+               + FormatPercent(pctFree) + "<br />" 
+               Next
+        End Sub
+    </script>
+</head>
+<body>
+    <span id="g1"><span>
+</body>
+</html>

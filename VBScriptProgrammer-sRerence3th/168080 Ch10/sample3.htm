@@ -1,0 +1,17 @@
+<html>
+<head>
+<title>A sample page</title>
+<script language="VBScript">
+Sub DoSomething(theElement,theNumber)
+    MsgBox theElement.Name & " made me fire"
+    MsgBox "Today's number is the number " & theNumber
+End Sub
+</script>
+
+</head>
+
+<body>
+<input type="button" name="cmdFireEvent" Value="Trigger" onClick="DoSomething Me,99">
+</body>
+
+</html>

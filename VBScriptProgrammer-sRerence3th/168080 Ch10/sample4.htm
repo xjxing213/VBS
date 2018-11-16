@@ -1,0 +1,37 @@
+<html>
+<head>
+<title>A sample page containg a form</title>
+<script language="VBScript">
+Function form1_onsubmit()
+  ' Has the user entered something?
+    If form1.txtNumber.value = "" Then
+        MsgBox "You must enter a value!"
+        form1_onsubmit = false
+  ' Is it a valid number?
+    ElseIf Not IsNumeric(form1.txtNumber.value) Then
+        MsgBox "You must enter a number!"
+        form1_onsubmit = false
+  ' Is the value in the correct range?
+    ElseIf form1.txtNumber.value > 10 Or _ 
+        form1.txtNumber.value < 1 Then
+        MsgBox "Invalid number!"
+        form1_onsubmit = false
+    Else
+    'Form submit can continue
+        MsgBox "Valid Number.  Thank you!"
+    End If
+End Function
+</script>
+
+</head>
+
+<body>
+  <form action="" method="POST" id="form1" name="form1">
+    Enter a number from 1 to 10 
+    <input type="text" id="txtNumber" name="txtNumber">
+    <br>
+    <input type="submit" value="Submit" id="submit1" name="submit1">
+  </form>
+</body>
+
+</html>

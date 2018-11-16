@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>A sample page containg script</title>
+<script language="VBScript">
+Sub button1_onclick
+  Dim theWindow
+  Dim theDocument
+  Dim thePara
+  Dim theTable
+  Dim theRow
+  Dim theCell
+
+  Set theWindow = window
+
+  Set theDocument = theWindow.document
+  MsgBox theDocument.title
+
+  Set thePara = theDocument.all(5)
+  MsgBox thepara.innerText
+
+
+  Set theTable = theDocument.all(6)
+  MsgBox theTable.tagName
+
+  Set theRow = theTable.rows(1)
+  MsgBox theRow.name
+
+  Set theCell = theRow.all(1)
+  MsgBox theCell.innertext 
+End Sub
+</script>
+
+</head>
+
+<body>
+  <p>A boring paragraph</p>
+  <table border="1" "name"="table1">
+    <tr>
+      <td>Cell 1</td>
+      <td>Cell 2</td>
+    </tr>
+    <tr name="second_row_in_table1">
+      <td>Cell 3</td>
+      <td>Cell 4</td>
+    </tr>
+  </table> 
+<input type="button" value="document.all" name="button1">
+</body>
+
+</html>
