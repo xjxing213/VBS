@@ -1,0 +1,11 @@
+<package>
+    <job id="vbs">
+        <script language="VBScript">
+        set WshShell = WScript.CreateObject("WScript.Shell")
+        set oUrlLink = WshShell.CreateShortcut(strDesktop & "\Wrox Web Site.url")
+        oUrlLink.TargetPath = "http://www.wrox.com"
+        oUrlLink.Save
+        WScript.Echo oUrlLink.FullName
+        </script>
+    </job>
+</package>

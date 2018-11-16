@@ -1,0 +1,4 @@
+<script language="VBScript" for="document" event="onkeydown">
+    Window.Status = "Key code = " & Window.Event.KeyCode
+    Window.Status = Window.Status & "Shift status  = " & Window.Event.ShiftKey
+</script>

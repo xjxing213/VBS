@@ -1,0 +1,24 @@
+<attach event="ondetach" onevent="DetachEvents()" />
+
+<script language="VBScript">
+
+Function DetachEvents()
+    DetachEvent('onevent1', EvH1)
+    DetachEvent('onevent2', EvH2)
+End Function
+
+Function EvH1()
+    ' do something here
+End Function
+
+Function EvH2()
+    ' do something here also
+End Function
+
+Function SomeTimeInTheBehavior()
+    AttachEvent('onevent1', EvH1)
+    AttachEvent('onevent2', EvH2)
+    ' do something too
+End Function
+
+</script>

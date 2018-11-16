@@ -1,0 +1,9 @@
+
+<script language="VBScript">
+
+Function public_put_Title(sNewTitle)
+    public_Title = sNewTitle
+    Window.External.RaiseEvent ("event_ontitlechange", Window.Document)
+End Function
+
+</script>

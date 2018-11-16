@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<component>
+
+<registration
+	description="Math"
+	progid="Math.WSC"
+	version="1.00"
+	classid="{585c5e81-addf-4006-993a-9701d7c4a41b}"
+>
+</registration>
+
+<public>
+	<property name="ReadOnlyProperty">
+		<get/>
+	</property>
+	<property name="WriteOnlyProperty">
+		<put/>
+	</property>
+	<property name="ReadWriteProperty">
+		<get/>
+		<put/>
+	</property>
+	<method name="Add">
+		<PARAMETER name="X"/>
+		<PARAMETER name="Y"/>
+	</method>
+	<method name="Subtract">
+		<PARAMETER name="X"/>
+		<PARAMETER name="Y"/>
+	</method>
+	<method name="Multiply">
+		<PARAMETER name="X"/>
+		<PARAMETER name="Y"/>
+	</method>
+	<method name="Divide">
+		<PARAMETER name="X"/>
+		<PARAMETER name="Y"/>
+	</method>
+	<event name="CalcError"/>
+</public>
+
+<implements type="Behavior" id="Behavior"/>
+
+<script language="VBScript">
+<![CDATA[
+
+dim ReadOnlyProperty
+dim WriteOnlyProperty
+dim ReadWriteProperty
+
+function get_ReadOnlyProperty()
+	get_ReadOnlyProperty = ReadOnlyProperty
+end function
+
+function put_WriteOnlyProperty(newValue)
+	WriteOnlyProperty = newValue
+end function
+
+function get_ReadWriteProperty()
+	get_ReadWriteProperty = ReadWriteProperty
+end function
+
+function put_ReadWriteProperty(newValue)
+	ReadWriteProperty = newValue
+end function
+
+function Add(X, Y)
+	Add = "Temporary Value"
+end function
+
+function Subtract(X, Y)
+	Subtract = "Temporary Value"
+end function
+
+function Multiply(X, Y)
+	Multiply = "Temporary Value"
+end function
+
+function Divide(X, Y)
+	Divide = "Temporary Value"
+end function
+
+]]>
+</script>
+
+</component>

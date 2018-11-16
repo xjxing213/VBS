@@ -1,0 +1,29 @@
+body
+{
+
+    FONT-FAMILY: 'Trebuchet MS';
+    FONT-SIZE: 20px;
+    POSITION: absolute
+    
+}
+
+span
+{
+
+    CURSOR: hand;
+    POSITION: absolute;
+    WIDTH: 15%
+
+}
+
+iframe
+{
+
+    HEIGHT: 95%;
+    LEFT: 15%;
+    OVERFLOW: scroll;
+    POSITION: absolute;
+    TOP: 5%;
+    WIDTH: 80%
+
+}

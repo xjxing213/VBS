@@ -1,0 +1,36 @@
+<HTA:APPLICATION
+    ID="MySampleHTA" 
+    Caption="yes"
+    windowState="maximize"> 
+ 
+<script language="VBScript">
+    Option Explicit
+
+    Sub LoadPage
+    
+    Dim cmdLineArray
+    Dim WebSite
+    
+    ' fill array with elements of commandLine attribute
+    cmdLineArray = Split(MySampleHTA.commandLine)
+    
+    ' check if first element of array is equal to commandLine attribute
+    ' if so, no web site was specified, so go to the Wrox site.
+        If cmdLineArray(0) = MySampleHTA.commandLine Then
+            WebSite = "http://www.wrox.com"
+
+    ' Otherwise, there is a specified web site. Need to see
+    ' if it's properly formatted. If :// isn't present in 
+    ' the second element of the array, we add http://
+        ElseIf InStr(1, cmdLineArray(1), "://" ) = 0 Then
+            WebSite = cmdLineArray(1)
+            WebSite = "http://" & WebSite
+        Else
+            WebSite = cmdLineArray(1)
+        End If 
+  
+        Viewer.document.location.href = WebSite
+
+    End Sub
+
+</script>

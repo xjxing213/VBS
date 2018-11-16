@@ -1,0 +1,46 @@
+<html>
+<head>
+<script language="VBScript">
+<!--
+
+  Sub btnGetName_onClick
+    Dim sValue
+    sValue = InputBox("Enter your name:")
+    Document.All.myScriptlet.SetCookieKey "Name", sValue
+    Document.All.Message.InnerHTML = "Please reload the page to see the scriptlet in action ..."
+  End Sub     
+
+-->
+</script>
+
+<script language="VBScript" for="window" event="onload">
+<!--
+  Dim sValue
+  sValue = Document.All.myScriptlet.GetCookieKey("Name")
+
+  If Document.All.myScriptlet.KeyExists Then
+      Document.All.Main.InnerHTML = "Hello there " & sValue & "!  Welcome back!"
+  End If
+-->
+</script>
+ 
+</head>
+<body>
+
+<OBJECT ID="myScriptlet"         
+    TYPE="text/x-scriptlet"         
+    DATA="cookiesManager.htm"
+    HEIGHT="0" WIDTH="0">
+</OBJECT>
+
+<div id="Main">
+<input TYPE="BUTTON" NAME="btnGetName" VALUE="Enter your name">
+</div>
+
+<br>
+
+<div id="Message">
+</div>
+
+</body>
+</html>

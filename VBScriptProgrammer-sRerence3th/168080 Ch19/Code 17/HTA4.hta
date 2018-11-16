@@ -1,0 +1,45 @@
+<html>
+<head>
+
+<title>Sample HTML Application</title>
+<HTA:APPLICATION
+    ID=MySampleHTA 
+    icon="hta.ico"
+    caption="no"
+    minimizeButton="yes"
+    maximizeButton="yes"
+    sysMenu = "yes"
+    border="thick"
+    windowState="maximize" />
+
+
+
+
+<link rel="stylesheet" type="text/css" href="HTA.css">
+</head>
+<body>
+
+<br>
+<br>
+<span 
+    onclick="Viewer.document.location.href='http://www.wrox.com'"> 
+    Wrox
+</span>
+<br>
+<br>
+<span 
+    onclick="Viewer.document.location.href='http://www.wiley.com'"> 
+    Wiley
+</span>
+<br>
+<br>
+<span 
+    onclick="Viewer.document.location.href='http://msdn.microsoft.com'"> 
+    MSDN
+</span>
+
+<iframe id="Viewer" src="http://www.wrox.com">
+</iframe>
+
+</body>
+</html>

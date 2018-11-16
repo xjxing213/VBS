@@ -1,0 +1,25 @@
+<html>
+<head>
+<script language="VBScript">
+     
+Function InvokeHRW()
+    Dim aspObj
+    Dim retObj
+    Set aspObj = RSGetASPObject("vbhello.asp")
+    Set retObj = aspObj.HRW()
+    MsgBox retObj.return_value
+End Function
+
+</script>
+</head>
+
+<body onload="InvokeHRW">
+
+<script language="JavaScript" src="../_ScriptLibrary/rs.htm">
+</script>
+<script language="JavaScript">
+RSEnableRemoteScripting("../_ScriptLibrary");
+</script>
+
+</body>
+</html>

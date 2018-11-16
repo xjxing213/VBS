@@ -1,0 +1,13 @@
+<script language="VBScript">
+    Sub ApplyOption1()
+          Document.All.MyDiv.AddBehavior("somebehavior.htc");
+    End Sub
+
+    Sub ApplyOption2()
+          Document.All.MyDiv.Style.Behavior = "url(somebehavior.htc)";
+    End Sub
+</script>
+
+...
+
+<div id="MyDiv">another div</div>

@@ -1,0 +1,125 @@
+<%@ language="VBScript" %>
+<%
+Dim txtFirstName, txtLastName, txtEmailAddr
+Dim sMessage
+
+'**********************************************************************
+'* Main
+'*
+'* The main subroutine for this page...
+'**********************************************************************
+
+Sub Main()
+  'Was this page submitted?
+  if ( Request("cmdSubmit") = "Submit" ) Then
+    'Reformat the data into a more readable format...
+    txtFirstName = InitCap(Request("txtFirstName"))
+    txtLastName = InitCap(Request("txtLastName"))
+    txtEmailAddr = LCase(Request("txtEmailAddr"))
+
+    'Check the email address for the correct components...
+    if (Instr(1, txtEmailAddr, "@") = 0 _ 
+          or Instr(1, txtEmailAddr, ".") = 0 ) Then
+      sMessage = "The email address you entered does not " _ 
+        & "appear to be valid."
+    Else
+      'Make sure there is something after the period..
+      if ( Instr(1, txtEmailAddr, ".") = Len(txtEmailAddr) _
+       or Instr(1, txtEmailAddr, "@") = 1 or _
+       (Instr(1, txtEmailAddr, ".") = Instr(1, txtEmailAddr, "@") + 1) ) Then
+         sMessage = "You must enter a complete email address."
+      end if
+    End If
+ 
+    'We passed our validation, show that all is good...
+    if ( sMessage = "" ) Then
+      sMessage = "Thank you for your input. All data has " _
+        & "passed verification."
+    else
+      Session("ErrorCount") = Session("ErrorCount") + 1
+
+      if ( Session("ErrorCount") > _
+          Application("AllowedErrorsBeforeWarning") ) then
+        sMessage = sMessage & "<P><Font Size=1>You have exceeded " _
+          & "the normal number of times it takes to get this right!</Font>"
+      end if
+    End If
+  Else
+    'First time in here? Set some default values...
+    txtFirstName = "Enter Your First Name"
+    txtLastName = "Enter Your Last Name"
+    txtEmailAddr = "Enter Your Email Address"
+  End If
+End Sub
+
+'**********************************************************************
+'* InitCap
+'*
+'* Capitalizes the first letter of the string
+'**********************************************************************
+
+Function InitCap(sStr)
+  InitCap = UCase(Left(sStr, 1)) & LCase(Right(sStr, Len(sStr) - 1))
+End Function
+
+'**********************************************************************
+'* Call our main subroutine
+'**********************************************************************
+
+Call Main()
+%>
+
+<html>
+<head>
+  <title>My First ASP Application</title>
+</head>
+
+<body>
+
+<table border="0" cellPadding="0" cellSpacing="0" width="600">
+<tbody>
+   <tr>
+     <td width="100"><a href="http://www.wrox.com" target="_blank" border=0 alt><img border=0 title="Check out the Wrox Press Web Site!" src="images/wroxlogo.gif" WIDTH="56" HEIGHT="56"></a></td>
+     <td width="500"><center><font size="5" face="Trebuchet MS">My First ASP 
+ 
+Application</font></center></td>
+   </tr>
+
+   <tr>
+     <td width="100">&nbsp;</td>
+     <td width="500" align="left"><font face="Trebuchet MS"><br>
+     Please fill out the following form and press the [Submit] button. The information you enter will be reformatted and the email address will be verified.</font><form action="default.asp" id="FORM1" method="post" name="frmMain">
+      <table border="0" cellPadding="1" cellSpacing="5" width="100%">
+       <tr>
+         <td width="100" nowrap align="right"><font size="2" face="Trebuchet MS">First Name:</font></td>
+         <td width="350"><font size="2" face="Trebuchet MS">
+           <input title="Enter your first name here" name="txtFirstName" size="30" value="<%=txtFirstName%>" tabindex="1"></font></td>
+          <td width="50"><div align="right"><font size="2" face="Trebuchet MS">
+           <input type="submit" title="Submit this data for processing..." value="Submit" name="cmdSubmit" tabindex="4"></font></td>
+       </tr>
+
+       <tr>
+         <td width="100" nowrap align="right">
+           <font size="2" face="Trebuchet MS">Last Name:</font></td>
+         <td width="400" colspan="2">
+           <font size="2" face="Trebuchet MS">
+           <input title="Enter your last name here" name="txtLastName" size="30" value="<%=txtLastName%>" tabindex="2"></font></td>
+       </tr>
+
+       <tr>
+          <td width="100" nowrap align="right"><font size="2" face="Trebuchet MS">Email Address:</font></td>
+          <td width="400" colspan="2"><font size="2" face="Trebuchet MS"><input title="Enter your valid email address here" name="txtEmailAddr"
+          size="40" value="<%=txtEmailAddr%>" tabindex="3"></font></td>
+        </tr>
+        <tr>
+          <td nowrap width=500 colspan="3" align="center"><font face="Trebuchet MS"><br>
+          <strong><%=sMessage%></strong> </font></td>
+        </tr>
+      </table>
+    </form>
+    <p>&nbsp;</td>
+  </tr>
+</tbody>
+</table>
+</body>
+</html>

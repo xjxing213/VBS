@@ -1,0 +1,13 @@
+<img src="myimage.gif" onclick="BubbleOnClick()">
+
+<script language="VBScript">
+
+Function BubbleOnClick()
+    ' here you do something before raising event in the container object 
+    ' usually, what you do is check the frozen property to be sure that  
+    ' the container object is ready to handle events
+    Window.External.BubbleEvent
+    ' do something after raising the event, if required
+End Function
+
+</script>

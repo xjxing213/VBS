@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>Simple VBScript Example</title>
+<script language="vbscript">
+Dim strCopyright
+strCopyright = "This script is copyright to me, 2003!"
+'**Start Encode**    
+    Sub ButtonClicked
+    If strCopyright = "This script is copyright to me, 2003!" Then
+        MsgBox "Copyright notice is unaltered.  Script cleared to continue ..." 
+        MsgBox "Script  continues ..." 
+    Else
+        MsgBox "Copyright notice is altered!!!  Script halted!" 
+    End If	
+    End Sub
+</script>
+</head>
+<body>
+  <button name="Button1" type="BUTTON" onclick="ButtonClicked">
+  Check copyright notice
+  </button>
+</body>
+</html>

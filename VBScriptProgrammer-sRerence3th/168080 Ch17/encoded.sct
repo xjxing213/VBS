@@ -1,0 +1,20 @@
+<scriptlet>
+
+<Registration
+    Description="TempConvert"
+    ProgID="TempConvert.Scriptlet"
+    Version="1.00"
+>
+</Registration>
+
+<implements id=Automation type=Automation>
+    <method name=Celsius>
+        <PARAMETER name=F/>
+    </method>
+    <method name=Fahrenheit>
+       <PARAMETER name=C/>
+    </method>
+</implements>
+
+<script language="VBScript.Encode">#@~^pAAAAA==@#@&@#@&wE	mYbW	~ZVdk!/co*@#@&,~P,Z+^drEkP{PXz1~CPcs,RP2 b@#@&2x[~wEUmDrKx@#@&@#@&sE	mDrW	Pol4DnU4+kDcZ*@#@&,~~Pwl4Dnx4nbY~',c,J*~M,Z#~Q,&+@#@&3	N~wE	mYbW	@#@&@#@&WCYAAA==^#~@</script>
+</scriptlet>

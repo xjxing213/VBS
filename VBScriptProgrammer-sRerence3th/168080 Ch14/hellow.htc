@@ -1,0 +1,9 @@
+<attach event="ondocumentready" ONEVENT="Hello()" />
+
+<script language="VBScript">
+
+Function Hello()
+      MsgBox "Hello, World!"
+End Function 
+
+</script>

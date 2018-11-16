@@ -1,0 +1,15 @@
+<property name="CryptedKey" put="PutCK" get="GetCK" />
+
+<script language="VBScript">
+
+Dim cKey
+
+Function PutCK(ByVal newValue)
+    cKey = newValue Xor 43960
+End Function 
+
+Function GetCK()
+    GetCK = cKey Xor 43960
+End Function
+
+</script>

@@ -1,0 +1,24 @@
+<package>
+   <job id="vbs">
+      <script language="VBScript">
+Set WshShell = WScript.CreateObject("WScript.Shell")
+Set WshSpecialFolders = WshShell.SpecialFolders
+	WScript.Echo WshSpecialFolders.Item(AllUsersDesktop)
+	WScript.Echo WshSpecialFolders.Item(AllUsersStartMenu)
+	WScript.Echo WshSpecialFolders.Item(AllUsersPrograms)
+	WScript.Echo WshSpecialFolders.Item(AllUsersStartup)
+	WScript.Echo WshSpecialFolders.Item(Desktop)
+	WScript.Echo WshSpecialFolders.Item(Favorites)
+	WScript.Echo WshSpecialFolders.Item(Fonts)
+	WScript.Echo WshSpecialFolders.Item(MyDocuments)
+	WScript.Echo WshSpecialFolders.Item(NetHood)
+	WScript.Echo WshSpecialFolders.Item(PrintHood)
+	WScript.Echo WshSpecialFolders.Item(Programs)
+	WScript.Echo WshSpecialFolders.Item(Recent)
+	WScript.Echo WshSpecialFolders.Item(SendTo)
+	WScript.Echo WshSpecialFolders.Item(StartMenu)
+	WScript.Echo WshSpecialFolders.Item(Startup)
+	WScript.Echo WshSpecialFolders.Item(Templates)
+      </script>
+   </job>
+</package>

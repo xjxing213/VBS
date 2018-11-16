@@ -1,0 +1,4 @@
+<script language="VBScript" for="myScriptlet"  
+    event=onscriptletevent(EventName, EventData)>
+    MsgBox "This scriptlet has just raised the following event: " & EventName
+</script>

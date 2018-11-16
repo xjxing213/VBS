@@ -1,0 +1,11 @@
+<package>
+    <job id="vbs">
+        <script language="VBScript">
+       Set WshShell = WScript.CreateObject("WScript.Shell")
+       Set WshSpecialFolders = WshShell.SpecialFolders
+       For x = 0 To WshSpecialFolders.Count - 1
+           WScript.Echo WshSpecialFolders.Item(x)
+       Next
+       </script>
+    </job>
+</package>

@@ -1,0 +1,55 @@
+<script language="VBScript">
+<!--
+
+Dim public_KeyExists
+
+Sub public_SetCookieKey(sKey, sValue)
+    Dim ck
+    ck = sKey & "=" & sValue
+    ck = ck & ";Expires=Thu 31-Dec-2020 12:00:00 GMT"
+    Document.Cookie = ck
+End Sub
+
+Function public_GetCookieKey(sKey)
+
+    public_KeyExists = True
+
+    Dim iLoc
+    iLoc = Instr(Document.Cookie, sKey)
+
+    If iLoc = 0 Then
+        public_GetCookieKey = ""
+        public_KeyExists = False
+    Else
+        Dim sTemp
+        sTemp = Right(Document.Cookie, Len(Document.Cookie) - iLoc + 1)
+ 
+        Dim iKeyLen
+        iKeyLen = Len(sKey)
+
+        If Mid(sTemp, iKeyLen + 1, 1) <> "=" Then
+            public_GetCookieKey = ""
+            public_KeyExists = False
+        Else
+        Dim iNextSep
+        iNextSep = Instr(sTemp, ";")
+
+        If iNextSep = 0 Then iNextSep = Len(sTemp) + 1
+        If iNextSep = (iKeyLen + 2) Then
+            public_GetCookieKey = ""
+        Else
+            Dim iValLen
+            iValLen = iNextSep - iKeyLen - 2
+            public_GetCookieKey = Mid(sTemp, iKeyLen + 2, iValLen)
+        End If
+        End If
+    End if
+
+End Function
+
+Sub public_RemoveCookieKey(sKey)
+    Document.Cookie = sKey & "=NULL;Expires=Fri 31-Dec-1980 12:00:00 GMT"
+End Sub
+
+-->
+</script>

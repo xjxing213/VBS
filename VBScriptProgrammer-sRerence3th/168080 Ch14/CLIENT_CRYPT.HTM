@@ -1,0 +1,36 @@
+<html>
+<head>
+
+<style>
+
+.myClass  {
+     background: red;
+     behavior: url(crypted.htc);
+}
+
+</style>
+
+<script language="VBScript">
+
+Sub WriteProp()
+    Dim iKey
+    iKey = CInt(InputBox("Enter the a number:"))
+    Document.All.myDIV.CryptedKey = iKey
+End Sub 
+
+Sub ReadProp()
+    MsgBox Document.All.myDiv.CryptedKey
+End Sub
+
+</script>
+
+</head>
+<body>
+
+<div class="myClass" ID="myDIV">This div has been enhanced with the CryptEd property</div>
+
+<input type="Button" onclick="VBScript:WriteProp" value="Change Property"></input>
+<input type="Button" onclick="VBScript:ReadProp" value="Read Property"></input>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<property name="CryptedKey" put="PutCK" get="GetCK" id="oCryptedKey" />
+<method name="DisplayCryptedValue" />
+
+<script language="VBScript">
+
+Dim cKey
+
+Function PutCK(ByVal newValue)
+    cKey = newValue Xor 43960
+    oCryptedKey.FireChange
+End Function 
+
+Function GetCK()
+    GetCK = cKey Xor 43960
+End Function
+
+Sub DisplayCryptedValue()
+    MsgBox cKey
+End Sub
+
+</script>

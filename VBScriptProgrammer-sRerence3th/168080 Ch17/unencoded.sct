@@ -1,0 +1,30 @@
+<scriptlet>
+
+<Registration
+    Description="TempConvert"
+    ProgID="TempConvert.Scriptlet"
+    Version="1.00"
+>
+</Registration>
+
+<implements id=Automation type=Automation>
+    <method name=Celsius>
+        <PARAMETER name=F/>
+    </method>
+    <method name=Fahrenheit>
+       <PARAMETER name=C/>
+    </method>
+</implements>
+
+<script language="VBScript">
+
+Function Celsius(F)
+    Celsius = 5/9 * (F - 32)
+End Function
+
+Function Fahrenheit(C)
+    Fahrenheit = (9/5 * C) + 32
+End Function
+
+</script>
+</scriptlet>
