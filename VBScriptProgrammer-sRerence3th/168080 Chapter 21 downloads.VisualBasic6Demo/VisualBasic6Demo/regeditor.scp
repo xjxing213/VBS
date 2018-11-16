@@ -1,0 +1,164 @@
+Dim strURL
+
+Sub Init()
+	Dim i, strTmp
+	Form.Caption = "Connection Registration Manager"
+	strTmp = "This application saves the database connection string in the registry. " & vbCrLf
+	strTmp = "Please choose connection type from the box below to proceed. "
+	Form.lblExplanation = strTmp
+	Form.lblRegistry.Caption = ""
+	' this information should be reflected in your application
+	' the standard is to store the registry keys in seperate subhives
+	' for different companies and projects
+	Form.txtSubpath.Text = "SOFTWARE\Company Name\App Name\"
+	' finally the name of the key
+	' you could similarly extend this application so it would 
+	' work like a wizard, and register several keys needed in installation
+	Form.txtKey.Text = "MyAppConnection"
+	
+	Form.lblRegistry.Caption = ""
+	Form.cmdRegister.Enabled = False
+	Form.cmdProcess.Enabled = True
+	For i = 0 To 5
+		Form.lblLabel(i).Visible = False
+		Form.txtText(i).Visible = False
+	Next
+	
+	Form.cboCombo.Clear
+	Form.cboCombo.AddItem "OLE DB"
+	Form.cboCombo.AddiTem "ODBC"
+	Form.cboCombo.AddItem "DSN"
+End Sub
+
+Function txtText_KeyPress(Index , KeyAscii)
+	' This function is not used in a program, but you can see how to
+	' Respond to (and modify) certain event variables. It is a bit of a 
+	' hack and does not look good. Now it returns the same value
+	' Look for Francesco Balena's article in VBPJ on Script Control
+	' and a framework to integrate it with VB (coming late 99, early 2000)
+	
+	'Select Case Index
+	'	Case 1	
+	'		txtText_KeyPress = Asc(Ucase(Chr(KeyAscii)))
+	'	Case Else
+			txtText_KeyPress = KeyAscii
+	'End Select
+End Function
+
+Sub cboCombo_Click()
+	Dim strComboSelection, strTmp
+
+	' Clean Up in case this was pressed already
+	Form.cmdRegister.Enabled = False
+	Form.cmdProcess.Enabled = True
+	Form.lblRegistry.Caption = ""
+	For i = 0 To 5
+		Form.lblLabel(i).Visible = False
+		Form.txtText(i).Visible = False
+	Next
+
+	strComboSelection = Trim(Form.cboCombo.List(Form.cboCombo.ListIndex))
+	Select Case strComboSelection
+		Case "OLE DB"
+			For i = 0 To 4
+				Form.lblLabel(i).Visible = True
+				Form.txtText(i).Visible = True
+			Next
+			Form.lblLabel(0).Caption = "Provider="
+			Form.lblLabel(1).Caption = "Data Source="
+			Form.lblLabel(2).Caption = "Initial Catalog="
+			Form.lblLabel(3).Caption = "User ID="
+			Form.lblLabel(4).Caption = "Password="
+			Form.txtText(0).Text = "SQLOLEDB"
+			Form.txtText(1).Text = "DATABOX"
+			Form.txtText(2).Text = "MyAppDB"
+			Form.txtText(3).Text = "Student"
+			Form.txtText(4).Text = "teacher"
+		Case "ODBC"
+			For i = 0 To 4
+				Form.lblLabel(i).Visible = True
+				Form.txtText(i).Visible = True
+			Next
+			Form.lblLabel(0).Caption = "Driver="
+			Form.lblLabel(1).Caption = "Server="
+			Form.lblLabel(2).Caption = "Database="
+			Form.lblLabel(3).Caption = "UID="
+			Form.lblLabel(4).Caption = "PWD="
+			Form.txtText(0).Text = "{SQL Server}"
+			Form.txtText(1).Text = "DATABOX"
+			Form.txtText(2).Text = "MyAppDB"
+			Form.txtText(3).Text = "Student"
+			Form.txtText(4).Text = "teacher"
+		Case "DSN"
+			For i = 0 To 2
+				Form.lblLabel(i).Visible = True
+				Form.txtText(i).Visible = True
+			Next
+			Form.lblLabel(0).Caption = "DSN="
+			Form.lblLabel(1).Caption = "UID="
+			Form.lblLabel(2).Caption = "PWD="
+			Form.txtText(0).Text = "MyAppDBDSN"
+			Form.txtText(1).Text = "Student"
+			Form.txtText(2).Text = "teacher"
+		Case Else
+			MsgBox "Error In the Script - illegal list box value, choose a connection type"
+	End Select
+	strTmp = "Please Fill In Remaining Values in the available text boxes. " & vbCrLf
+	strTmp = strTmp & "You may press ""Proceed"" button, or change the connection method again. " & vbCrLf
+	strTmp = strTmp & "Leaving User ID empty will leave out user infromation from registry"
+	Form.lblExplanation = strTmp	    
+End Sub
+
+Sub txtText_Change(Index)
+    	' ignore this
+	' needed as placeholder
+End Sub
+
+
+Sub cmdProcess_Click()
+	Dim strComboSelection, strTmp
+	Form.cmdRegister.Enabled = True
+	Form.cmdProcess.Enabled = False
+
+	strComboSelection = Trim(Form.cboCombo.List(Form.cboCombo.ListIndex))
+	strTmp = ""
+	Select Case strComboSelection
+		Case "OLE DB"
+			For i = 0 To 2
+				strTmp = strTmp & Trim(Form.lblLabel(i).Caption)
+				strTmp = strTmp & Trim(Form.txtText(i).Text) & ";"
+			Next
+			If (Trim(Form.txtText(3).Text) <> "") Then
+			For i = 3 To 4
+				strTmp = strTmp & Trim(Form.lblLabel(i).Caption)
+				strTmp = strTmp & Trim(Form.txtText(i).Text) & ";"
+			Next
+			End If
+		Case "ODBC"
+			For i = 0 To 2
+				strTmp = strTmp & Trim(Form.lblLabel(i).Caption)
+				strTmp = strTmp & Trim(Form.txtText(i).Text) & ";"
+			Next
+			If (Trim(Form.txtText(3).Text) <> "") Then
+			For i = 3 To 4
+				strTmp = strTmp & Trim(Form.lblLabel(i).Caption)
+				strTmp = strTmp & Trim(Form.txtText(i).Text) & ";"
+			Next
+			End If
+		Case "DSN"
+			strTmp = strTmp & Trim(Form.lblLabel(0).Caption)
+			strTmp = strTmp & Trim(Form.txtText(0).Text) & ";"
+			If (Trim(Form.txtText(1).Text) <> "") Then
+			For i = 1 To 2
+				strTmp = strTmp & Trim(Form.lblLabel(i).Caption)
+				strTmp = strTmp & Trim(Form.txtText(i).Text) & ";"
+			Next
+			End If
+		Case Else
+			MsgBox "Error In the Script - illegal list box value, choose a connection type"
+	End Select
+	Form.lblRegistry.Caption = strTmp
+	strTmp = "Please Inspect the registry value and press register. " & vbCrLf
+	strTmp = strTmp & "You may press ""Register"" button, or change the connection method again. "
+	Form.lblExplanation = strTmp	
+End Sub
