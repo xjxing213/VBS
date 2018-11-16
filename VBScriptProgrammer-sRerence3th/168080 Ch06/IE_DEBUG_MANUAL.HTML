@@ -1,0 +1,26 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>VBScript Programmer's Reference - IE Debugger Example</title>
+        <script type="text/vbscript" language="VBScript">
+            Sub cmdTest_OnClick
+                Dim x, y, z
+                x = 5
+                y = 100
+                z = y / x
+                txtResult.Value = z
+            End Sub
+        </script>
+    <head>
+    <body>
+    <h2>IE Script Debugger Example: Activate Debugger Manually<br></h2>
+    To set a breakpoint in the script called by the "Run Now" button, 
+    use the <b>View > Script Debugger > Open</b> menu to open the debugger. 
+    Then use the "Toggle Breakpoint" option in the debugger to set a 
+    breakpoint at the line of your choosing.
+    </h2>
+    <input type="button" name="cmdTest" value="Run Test"><br><br>
+    <b>Test Result:</b> <input type="text" name="txtResult" id="txtResult">
+    </body>
+</html>

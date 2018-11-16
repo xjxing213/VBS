@@ -1,0 +1,25 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>VBScript Programmer's Reference - IE Debugger Example</title>
+        <script type="text/vbscript" language="VBScript">
+            Sub cmdTest_OnClick
+                Dim x, y, z
+                x = 0
+                y = 100
+                z = y / x
+                txtResult.Value = z
+            End Sub
+        </script>
+    <head>
+    <body>
+    <h2>IE Script Debugger Example: Activate Debugger with Error<br></h2>
+    This button will call a script that contains a coding error.<br>
+    If the IE "Disable script debugging" option is turned off, the
+    debugger will active on the line of code with the error.
+    </h2>
+    <input type="button" name="cmdTest" value="Run Test"><br><br>
+    <b>Test Result:</b> <input type="text" name="txtResult" id="txtResult">
+    </body>
+</html>

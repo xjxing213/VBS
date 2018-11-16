@@ -1,0 +1,2 @@
+This is a test file to be copied by WSH_DEBUG_EXAMPLE.VBS.
+It should be in the same directory as WSH_DEBUG_EXAMPLE.VBS.

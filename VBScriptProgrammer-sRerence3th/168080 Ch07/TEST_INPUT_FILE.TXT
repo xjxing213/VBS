@@ -1,0 +1,3 @@
+OrderID=456	CustID=123	ItemID=765
+OrderID=345	CustID=987	ItemID=149
+OrderID=207	CustID=923	ItemID=592
