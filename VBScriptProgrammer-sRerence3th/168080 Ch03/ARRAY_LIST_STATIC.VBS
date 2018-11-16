@@ -1,0 +1,26 @@
+Dim astrPhoneList(2,4)
+
+'Add the first row
+astrPhoneList(0,0) = "Williams"
+astrPhoneList(1,0) = "Tony"
+astrPhoneList(2,0) = "404-555-6328"
+
+'Add the second row
+astrPhoneList(0,1) = "Carter"
+astrPhoneList(1,1) = "Ron"
+astrPhoneList(2,1) = "305-555-2514"
+
+'Add the third row
+astrPhoneList(0,2) = "Davis"
+astrPhoneList(1,2) = "Miles"
+astrPhoneList(2,2) = "212-555-5314"
+
+'Add the fourth row
+astrPhoneList(0,3) = "Hancock"
+astrPhoneList(1,3) = "Herbie"
+astrPhoneList(2,3) = "616-555-6943"
+
+'Add the fifth row
+astrPhoneList(0,4) = "Shorter"
+astrPhoneList(1,4) = "Wayne"
+astrPhoneList(2,4) = "853-555-0060"
