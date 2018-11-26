@@ -1,16 +1,16 @@
 
 Dim tDate,TodayorNot,password,city,ips,citys,i,j,a,WshShell,FileSystem,path
 'True False
-'±¸ÓÃ£¬ÒÔ·ÀÒÔºó»á¼ì²éÆäËûÈÕÆÚµÄ±¸·İÎÄ¼ş
+'å¤‡ç”¨ï¼Œä»¥é˜²ä»¥åä¼šæ£€æŸ¥å…¶ä»–æ—¥æœŸçš„å¤‡ä»½æ–‡ä»¶
 TodayorNot = True
 If TodayorNot Then
-	tDate = Replace(Replace(Date,"/",""),"-","") 'ÏµÍ³²»Ò»Ñù£¬ÄêÔÂÈÕ¼ä¸ô·û£¨/ -£©Ò²²»Ò»Ñù
+	tDate = Replace(Replace(Date,"/",""),"-","") 'ç³»ç»Ÿä¸ä¸€æ ·ï¼Œå¹´æœˆæ—¥é—´éš”ç¬¦ï¼ˆ/ -ï¼‰ä¹Ÿä¸ä¸€æ ·
 Else
-	tDate = InputBox("ÊäÈëÈÕÆÚ¸ñÊ½£ºÈç20181121")
+	tDate = InputBox("è¾“å…¥æ—¥æœŸæ ¼å¼ï¼šå¦‚20181121")
 End if
 
-password=InputBox("ÊäÈëÃÜÂë£º")
-city=InputBox("ÊäÈëµØÊĞÊ××ÖÄ¸Èç¹ãÖİÔòÊäÈëgz")
+password=InputBox("è¾“å…¥å¯†ç ï¼š")
+city=InputBox("è¾“å…¥åœ°å¸‚é¦–å­—æ¯å¦‚å¹¿å·åˆ™è¾“å…¥gz")
 
 If Len(password) <> 0 Or Len(city) <> 0 then
 	Set WshShell = WScript.CreateObject("WScript.Shell") 
@@ -21,7 +21,7 @@ If Len(password) <> 0 Or Len(city) <> 0 then
 	Dim objDict,ip,backupPath
 	Set objDict = WSH.CreateObject("Scripting.Dictionary")
 	ipsArr = Split(ips,"|")
-	backupPath=Array("Ö÷ÓÃ±¸·İ","±¸ÓÃ±¸·İ")
+	backupPath=Array("ä¸»ç”¨å¤‡ä»½","å¤‡ç”¨å¤‡ä»½")
 
 	j = 0
 	citysArr = Split(citys,",")
@@ -32,21 +32,21 @@ If Len(password) <> 0 Or Len(city) <> 0 then
 		Next		
 	Next
 	
-	path="D:\license±¸·İ¼ì²é"
+	path="D:\licenseå¤‡ä»½æ£€æŸ¥"
 	If Not FileSystem.FolderExists(path) Then 
 		FileSystem.createfolder(path)
 	End if
 	
 	j = 0
 	For i = 0 To 1
-		path="D:\license±¸·İ¼ì²é\" & backupPath(i) & tDate
+		path="D:\licenseå¤‡ä»½æ£€æŸ¥\" & backupPath(i) & tDate
 		download = "D:\download.txt"
 		If Not FileSystem.FolderExists(path) Then 
-			FileSystem.createfolder(path) '´´½¨Ä¿Â¼
+			FileSystem.createfolder(path) 'åˆ›å»ºç›®å½•
 		End if
 		For Each a In Split(ipsArr(i),",")
 			If objDict(a)=city Then	
-				Set OutPutFile = FileSystem.OpenTextFile(download,2,True) '2±íÊ¾Ö±½Ó¸²¸ÇÔ­ÎÄ¼ş
+				Set OutPutFile = FileSystem.OpenTextFile(download,2,True) '2è¡¨ç¤ºç›´æ¥è¦†ç›–åŸæ–‡ä»¶
 				OutPutFile.WriteLine "open " & a 
 				OutPutFile.WriteLine "user backup " & password
 				OutPutFile.WriteLine "lcd " & path
@@ -55,7 +55,7 @@ If Len(password) <> 0 Or Len(city) <> 0 then
 				OutPutFile.WriteLine "mget " & tDate & "*.dat" 
 				OutPutFile.WriteLine "bye" 
 				OutPutFile.Close
-				Wshshell.run "ftp -n -s:" & download , 1 , True 'Öğ¸ö¹Ø±Õ´°¿ÚÉñÁË£¬¼ÓÁËTrue¶¼¿ÉÒÔÏÂÔØÏÂÀ´ÁË¡£
+				Wshshell.run "ftp -n -s:" & download , 1 , True 'é€ä¸ªå…³é—­çª—å£ç¥äº†ï¼ŒåŠ äº†Trueéƒ½å¯ä»¥ä¸‹è½½ä¸‹æ¥äº†ã€‚
 			End if
 			j = j + 1
 		Next
@@ -68,5 +68,5 @@ If Len(password) <> 0 Or Len(city) <> 0 then
 	sfile.attributes=0
 	sfile.Delete
 Else
-	MsgBox "ÊäÈëÎª¿Õ"
+	MsgBox "è¾“å…¥ä¸ºç©º"
 End if
